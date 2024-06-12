@@ -1,6 +1,7 @@
 import './style.css'
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
+import { fabric } from 'fabric'; 
 
 var notesData = JSON.parse(localStorage.getItem('notesData')) || 
 [{ id: '1', date: '12 May 2024', title: 'Job Interview Preparation', content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa maiores sd amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsaamet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa ' }, { id: '2', date: '13 May 2024', title: 'Grocery List', content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa maiores!' }, { id: '3', date: '14 May 2024', title: 'To Do List', content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa maiores!' }, { id: '4', date: '15 May 2024', title: 'Important Notes', content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa maiores!' }, { id: '5', date: '16 May 2024', title: 'Grocery List', content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus velit neque minima! Magnam nam molestias expedita, et exercitationem ipsa maiores!' }];
