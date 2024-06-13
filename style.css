@@ -203,32 +203,41 @@ canvas {
   /* font-size: 20px; */
 }
 .canvas-container{
-   height: 70vh !important; 
-
+   height: 70vh !important;
 }
 
 .upper-canvas{
-  width: 60vw !important;
+  border-radius: 15px;
+  margin-left: 5vw;
+  width: 50vw !important;
   height: 70vh !important;
   border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   
 } 
 #drawingCanvas{
-  width: 60vw !important;
+  border-radius: 20px;
+  margin-left: 5vw;
+  width: 50vw !important;
   height: 70vh !important;
   background-color: rgb(250, 249, 249) !important;
   border: none !important;
-
-
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-/* .drawing-canvas{
-  height: 70vh;
-  overflow: auto;
-} */
-.clear-btn{
- border-radius: 5px;
- /* border: none; */
- /* margin-top: 5px; */
- padding: 2px;
- color: rgb(248, 90, 90);
+.clear-btn {
+  background-color: #f44336;
+  position: absolute;
+  right: 140px;
+  top: 80px;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.clear-btn:hover {
+  background-color: #d32f2f;
 }

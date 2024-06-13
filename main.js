@@ -42,7 +42,6 @@ container.appendChild(notesDiv);
 
 var noteContainer = document.createElement('div');
 noteContainer.classList.add('noteContainer-div');
-// noteContainer.setAttribute('contenteditable', 'true');
 
 container.appendChild(noteContainer);
 
@@ -58,14 +57,10 @@ function saveToLocalStorage(){
 function renderNotes(notesData) {
     notesDiv.innerHTML = '';
 
-    notesData.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date);
-    })
-
     notesData.forEach(function (data, index) {
         var noteDiv = document.createElement('div');
         noteDiv.classList.add('note');
-        if (index === 0) {
+        if (data === currentNote) {
             noteDiv.style.backgroundColor = 'aquamarine';
         }
         var date = document.createElement('h3');
@@ -81,7 +76,6 @@ function renderNotes(notesData) {
         var content = document.createElement('p');
         content.innerHTML = data.content
         content.classList.add('content-heading');
-        // content.slice(0,10);
         noteDiv.appendChild(content);
 
         noteDiv.addEventListener('click', function () {
@@ -91,8 +85,6 @@ function renderNotes(notesData) {
             noteDiv.style.backgroundColor = 'aquamarine';
             renderDataInContainer(data);
         })
-
-
         notesDiv.appendChild(noteDiv);
     })
 
@@ -106,7 +98,6 @@ function handleInput(event) {
 
     if (editedElem.classList.contains('cont-title')) {
         currentNote.title = editedText;
-        // console.log(notesData[index]);
     } else if (editedElem.classList.contains('cont-content')) {
         currentNote.content = editedText;
     }
@@ -124,19 +115,9 @@ function renderDataInContainer(note, index) {
     currentNote = note;
     noteContainer.innerHTML = '';
 
-    // var quillDiv = document.createElement('div');
-    // quillDiv.classList.add('quillDiv');
-    // noteContainer.appendChild(quillDiv);
-    // const quill = new Quill('.quillDiv', {
-    //     theme: 'snow'
-    // });
-
-    // var editor = document.querySelector('.ql-editor');
-
     var date = document.createElement('h3');
     date.textContent = note.date;
     date.classList.add('cont-date');
-    // date.setAttribute('contenteditable', 'true');
     noteContainer.appendChild(date);
 
     var title = document.createElement('p');
@@ -173,40 +154,24 @@ function renderDataInContainer(note, index) {
             autoSaveDrawing(canvas);
         });
         var clearButton = document.createElement('button');
-        clearButton.textContent = 'Clear Canvas';
+        clearButton.textContent = 'Clear';
         clearButton.classList.add('clear-btn');
         noteContainer.appendChild(clearButton);
 
         clearButton.addEventListener('click', function () {
             canvas.clear();
-            // currentNote.content = '';
-            for (let i = 0; i < notesData.length; i++) {
-                if (notesData[i].id === currentNote.id) {
-                    notesData[i].content = '';
-                }
-            }
+            currentNote.content = '';
+            // for (let i = 0; i < notesData.length; i++) {
+            //     if (notesData[i].id === currentNote.id) {
+            //         notesData[i].content = '';
+            //     }
+            // }
             saveToLocalStorage(); 
             renderNotes(notesData); 
         });
-
-        
-        // var saveButton = document.createElement('button');
-        // saveButton.textContent = 'Save Drawing';
-        // saveButton.className = 'saveBtn';
-        // noteContainer.appendChild(saveButton);
-
-        // saveButton.addEventListener('click', function () {
-        //     var drawingData = canvas.toDataURL('image/png');
-        //     // console.log(drawingData);
-        //     currentNote.content = `<img src="${drawingData}" />`;
-        //     saveToLocalStorage();
-        //     renderNotes(notesData);
-        //     renderDataInContainer(currentNote);
-        // });
     }else{
         var contentDiv = document.createElement('div');
         contentDiv.classList.add('quillDiv');
-        // contentDiv.setAttribute('contenteditable', 'true'); 
         contentDiv.innerHTML = note.content;
         noteContainer.appendChild(contentDiv);
 
@@ -224,8 +189,10 @@ function renderDataInContainer(note, index) {
 
         quill.on('text-change', function () {
             currentNote.content = quill.root.innerHTML;
+            changeDate();
             saveToLocalStorage()
             renderNotes(notesData);
+            renderDataInContainer(currentNote)
         });
     }
 
@@ -238,6 +205,7 @@ function renderDataInContainer(note, index) {
 function autoSaveDrawing(canvas) {
     var drawingData = canvas.toDataURL('image/png');
     currentNote.content = `<img src="${drawingData}" />`;
+    changeDate();
     saveToLocalStorage();
     renderNotes(notesData);
     renderDataInContainer(currentNote);
@@ -252,9 +220,10 @@ function addButton() {
     renderDataInContainer(newNoteObj, 0);
 }
 
+
 function taskButton() {
     var currentDate = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
-    var newNoteObj = { id: String(notesData.length + 1), date: currentDate, title: 'To Do List', content: "Add To do's : <ul><li></li></ul>" };
+    var newNoteObj = { id: String(notesData.length + 1), date: currentDate, title: 'To Do List', content: "Add To do's : <ul><li class='list'></li></ul>" };
     notesData.unshift(newNoteObj);
     saveToLocalStorage();
     renderNotes(notesData);
@@ -268,14 +237,31 @@ function scribbleButton() {
     saveToLocalStorage();
     renderNotes(notesData);
     renderDataInContainer(newNoteObj, 0);
-
-    // noteContainer.innerHTML = '';
-
-    // currentNote.content = drawingDiv.innerHTML;
 }
+shareBtn.addEventListener('click', async function() {
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: currentNote.title,
+                text: currentNote.content,
+                url: window.location.href
+            });
+        } else {
+            console.log('Web Share API not supported.');
+            // Fallback code for browsers that do not support Web Share API
+        }
+    } catch (error) {
+        console.error('Error sharing:', error);
+    }
+});
+
+
 addBtn.addEventListener('click', addButton);
 taskBtn.addEventListener('click', taskButton);
 scribbleBtn.addEventListener('click', scribbleButton)
 
+notesData.sort((a, b) => new Date(b.date) - new Date(a.date));
 renderNotes(notesData);
-renderDataInContainer(notesData[0]);
+currentNote = notesData[0];
+renderNotes(notesData); 
+renderDataInContainer(currentNote);
