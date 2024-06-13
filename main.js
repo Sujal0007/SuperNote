@@ -63,6 +63,15 @@ function renderNotes(notesData) {
         if (data === currentNote) {
             noteDiv.style.backgroundColor = 'aquamarine';
         }
+        var deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.innerHTML = 'X';
+        deleteBtn.addEventListener('click', function (event) {
+            event.stopPropagation(); 
+            deleteNoteData(index);
+        });
+        noteDiv.appendChild(deleteBtn);
+
         var date = document.createElement('h3');
         date.textContent = data.date;
         date.classList.add('date-heading');
@@ -91,9 +100,8 @@ function renderNotes(notesData) {
 
 }
 function handleInput(event) {
-    editedElem = event.target;
-    editedText = editedElem.innerText.trim();
-    // console.log(currentNote, 'hello');
+    var editedElem = event.target;
+    var editedText = editedElem.innerText.trim();
 
 
     if (editedElem.classList.contains('cont-title')) {
@@ -104,6 +112,8 @@ function handleInput(event) {
     changeDate();
     saveToLocalStorage();
     renderNotes(notesData);
+    var dateElement = document.querySelector('.cont-date');
+    dateElement.textContent = currentNote.date;
 
 }
 
@@ -243,7 +253,6 @@ shareBtn.addEventListener('click', async function() {
             });
         } else {
             console.log('Web Share API not supported.');
-            // Fallback code for browsers that do not support Web Share API
         }
     } catch (error) {
         console.error('Error sharing:', error);
@@ -260,3 +269,15 @@ renderNotes(notesData);
 currentNote = notesData[0];
 renderNotes(notesData); 
 renderDataInContainer(currentNote);
+
+function deleteNoteData(index) {
+    notesData.splice(index, 1);
+    saveToLocalStorage();
+    renderNotes(notesData);
+
+    if (notesData.length > 0) {
+        renderDataInContainer(notesData[0]);
+    } else {
+        noteContainer.innerHTML = '';
+    }
+}

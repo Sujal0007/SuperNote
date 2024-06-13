@@ -11,7 +11,6 @@ body {
 .container {
   width: 90vw;
   height: 95vh;
-  /* border: solid; */
   display: flex;
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -23,7 +22,6 @@ body {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border-right: 1px solid darkgray;
-  /* border: solid red; */
   background-color: rgb(253, 254, 254);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -31,14 +29,11 @@ body {
 .notes-div {
   height: 95vh;
   width: 25vw;
-  /* border: solid rgb(17, 167, 57); */
   background-color: rgb(252, 252, 251);
   overflow-y: scroll;
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 
 .noteContainer-div {
-  /* border: solid blue; */
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   width: 60vw;
@@ -47,14 +42,12 @@ body {
   color: white;
   text-align: center;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  /* padding: 10px; */
 }
 
 .add-btn,
 .task-btn,
 .subscribe-btn,
 .share-btn {
-  /* background-color: black; */
   color: white;
   height: 40px;
   width: 40px;
@@ -91,9 +84,10 @@ body {
 .note {
   text-align: center;
   border-bottom: 1px solid black;
-  height: 120px;
+  height: 130px;
   overflow: hidden;
   padding: 10px;
+  position: relative;
 }
 
 .note:hover {
@@ -107,11 +101,9 @@ body {
 .cont-date {
   color: rgb(176, 174, 174);
   font-size: 18px;
-  /* border-bottom: 2px solid rgb(234, 96, 96); */
   margin-bottom: 2px;
   margin-left: 10px;
   text-align: left;
-  /* background-color: aquamarine; */
 }
 
 .cont-title {
@@ -129,7 +121,6 @@ body {
 
 .title-heading {
   text-align: right;
-  /* margin-right: 10px; */
   font-size: 14px;
 }
 
@@ -138,17 +129,9 @@ body {
   font-size: 12px;
   margin-left: 20px;
 }
-
-/* #quill{
-  width: 90%;
-  height: 7vh;
-  border: solid;
-
-} */
 .quillDiv {
   height: 100px;
   border: none;
-  /* background-color: blue; */
   overflow: hidden;
 }
 
@@ -167,15 +150,9 @@ body {
 }
 
 .ql-snow.ql-toolbar button svg {
-  /* background-color: antiquewhite; */
   color: white !important;
   border-radius: 5px;
 }
-
-/* .ql-toolbar.ql-snow .ql-picker-label {
-  /* border: 1px solid transparent; */
-  /* background: aliceblue;
-} */ 
 
 .ql-container.ql-snow {
   border: none !important;
@@ -199,8 +176,6 @@ canvas {
 }
 .ql-editor p,li {
   text-align: center;
-  /* margin-left: 40px; */
-  /* font-size: 20px; */
 }
 .canvas-container{
    height: 70vh !important;
@@ -240,4 +215,13 @@ canvas {
 
 .clear-btn:hover {
   background-color: #d32f2f;
+}
+.delete-btn{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 8px;
+  background-color: #f4363c;
+  color: white;
+  border: none;
 }
