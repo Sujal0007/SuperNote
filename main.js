@@ -162,11 +162,6 @@ function renderDataInContainer(note, index) {
         clearButton.addEventListener('click', function () {
             canvas.clear();
             currentNote.content = '';
-            // for (let i = 0; i < notesData.length; i++) {
-            //     if (notesData[i].id === currentNote.id) {
-            //         notesData[i].content = '';
-            //     }
-            // }
             saveToLocalStorage(); 
             renderNotes(notesData); 
         });
@@ -238,22 +233,22 @@ function scribbleButton() {
     renderNotes(notesData);
     renderDataInContainer(newNoteObj, 0);
 }
-// shareBtn.addEventListener('click', async function() {
-//     try {
-//         if (navigator.share) {
-//             await navigator.share({
-//                 title: currentNote.title,
-//                 text: currentNote.content,
-//                 url: window.location.href
-//             });
-//         } else {
-//             console.log('Web Share API not supported.');
-//             // Fallback code for browsers that do not support Web Share API
-//         }
-//     } catch (error) {
-//         console.error('Error sharing:', error);
-//     }
-// });
+shareBtn.addEventListener('click', async function() {
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: currentNote.title,
+                text: currentNote.content,
+                url: window.location.href
+            });
+        } else {
+            console.log('Web Share API not supported.');
+            // Fallback code for browsers that do not support Web Share API
+        }
+    } catch (error) {
+        console.error('Error sharing:', error);
+    }
+});
 
 
 addBtn.addEventListener('click', addButton);
