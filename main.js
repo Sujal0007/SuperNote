@@ -93,7 +93,7 @@ function renderNotes(notesData) {
 function handleInput(event) {
     editedElem = event.target;
     editedText = editedElem.innerText.trim();
-    console.log(currentNote, 'hello');
+    // console.log(currentNote, 'hello');
 
 
     if (editedElem.classList.contains('cont-title')) {
@@ -106,6 +106,7 @@ function handleInput(event) {
     renderNotes(notesData);
 
 }
+
 
 function changeDate() {
     currentNote.date = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -192,7 +193,6 @@ function renderDataInContainer(note, index) {
             changeDate();
             saveToLocalStorage()
             renderNotes(notesData);
-            renderDataInContainer(currentNote)
         });
     }
 
@@ -223,7 +223,7 @@ function addButton() {
 
 function taskButton() {
     var currentDate = new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
-    var newNoteObj = { id: String(notesData.length + 1), date: currentDate, title: 'To Do List', content: "Add To do's : <ul><li class='list'></li></ul>" };
+    var newNoteObj = { id: String(notesData.length + 1), date: currentDate, title: 'To Do List', content: "Add To do's : <ul><li></li></ul>" };
     notesData.unshift(newNoteObj);
     saveToLocalStorage();
     renderNotes(notesData);
@@ -238,22 +238,22 @@ function scribbleButton() {
     renderNotes(notesData);
     renderDataInContainer(newNoteObj, 0);
 }
-shareBtn.addEventListener('click', async function() {
-    try {
-        if (navigator.share) {
-            await navigator.share({
-                title: currentNote.title,
-                text: currentNote.content,
-                url: window.location.href
-            });
-        } else {
-            console.log('Web Share API not supported.');
-            // Fallback code for browsers that do not support Web Share API
-        }
-    } catch (error) {
-        console.error('Error sharing:', error);
-    }
-});
+// shareBtn.addEventListener('click', async function() {
+//     try {
+//         if (navigator.share) {
+//             await navigator.share({
+//                 title: currentNote.title,
+//                 text: currentNote.content,
+//                 url: window.location.href
+//             });
+//         } else {
+//             console.log('Web Share API not supported.');
+//             // Fallback code for browsers that do not support Web Share API
+//         }
+//     } catch (error) {
+//         console.error('Error sharing:', error);
+//     }
+// });
 
 
 addBtn.addEventListener('click', addButton);
