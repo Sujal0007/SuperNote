@@ -174,9 +174,6 @@ body {
 canvas {
   border: 1px solid #000;
 }
-.ql-editor p,li {
-  text-align: center;
-}
 .canvas-container{
    height: 70vh !important;
 }
@@ -216,12 +213,44 @@ canvas {
 .clear-btn:hover {
   background-color: #d32f2f;
 }
-.delete-btn{
+
+.dropdown {
   position: absolute;
-  top: 5px;
+  display: inline-block;
   right: 5px;
-  font-size: 8px;
-  background-color: #f4363c;
+  top: 2px;
+}
+.dropbtn{
+  background-color: #292929;
   color: white;
   border: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #484646;
+  width: 35px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+
+.dropdown-content button {
+  color: rgb(14, 13, 13);
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  background: rgb(247, 246, 246);
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
 }

@@ -62,15 +62,44 @@ function renderNotes(notesData) {
         noteDiv.classList.add('note');
         if (data === currentNote) {
             noteDiv.style.backgroundColor = 'aquamarine';
-        }
+        } 
+
+        var dropdown = document.createElement('div');
+        dropdown.classList.add('dropdown');
+
+        var dropdownBtn = document.createElement('button');
+        dropdownBtn.classList.add('dropbtn');
+        dropdownBtn.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
+        dropdown.appendChild(dropdownBtn);
+
+        var dropdownContent = document.createElement('div');
+        dropdownContent.classList.add('dropdown-content');
+
         var deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.innerHTML = 'X';
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
         deleteBtn.addEventListener('click', function (event) {
-            event.stopPropagation(); 
             deleteNoteData(index);
         });
-        noteDiv.appendChild(deleteBtn);
+        dropdownContent.appendChild(deleteBtn);
+
+        var editBtn = document.createElement('button');
+        editBtn.innerHTML = '<i class="fa-solid fa-edit"></i>';
+      
+        dropdownContent.appendChild(editBtn);
+
+        var saveBtn = document.createElement('button');
+        saveBtn.innerHTML = '<i class="fa-solid fa-save"></i>';
+    
+        dropdownContent.appendChild(saveBtn);
+
+        dropdown.appendChild(dropdownContent);
+        noteDiv.appendChild(dropdown);
+
+        dropdownBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            dropdownContent.classList.toggle('show');
+        });
+
 
         var date = document.createElement('h3');
         date.textContent = data.date;
@@ -263,6 +292,7 @@ shareBtn.addEventListener('click', async function() {
 addBtn.addEventListener('click', addButton);
 taskBtn.addEventListener('click', taskButton);
 scribbleBtn.addEventListener('click', scribbleButton)
+
 
 notesData.sort((a, b) => new Date(b.date) - new Date(a.date));
 renderNotes(notesData);
