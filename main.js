@@ -78,6 +78,7 @@ function renderNotes(notesData) {
         var deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
         deleteBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
             deleteNoteData(index);
         });
         dropdownContent.appendChild(deleteBtn);

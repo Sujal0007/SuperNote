@@ -1,11 +1,43 @@
-body {
+:root {
+  --main-bg-color: rgb(206, 204, 204);
+  --container-bg-color: rgb(252, 252, 251);
+  --icon-div-bg-color: rgb(253, 254, 254);
+  --noteContainer-div-bg-color: rgb(87, 20, 151);
+  --note-hover-bg-color: rgb(179, 248, 225);
+  --text-color: white;
+  --border-color: darkgray;
+  --shadow-color: rgba(100, 100, 111, 0.2);
+  --addbutton-color: black;
+  --taskbutton-color: rgb(232, 196, 37);
+  --scribblebutton-color: rgb(116, 63, 72);
+  --sharebutton-color: rgb(10, 56, 10);
+  --cont-date-color: rgb(176, 174, 174);
+  --cont-title-color: rgb(238, 103, 103);
+  --cont-content-color: antiquewhite;
+  --quill-bg-color: rgb(76, 15, 137);
+  --quill-button-color: antiquewhite;
+  --quill-svg-color: white;
+  --quill-stroke-color: rgb(245, 242, 242);
+  --quill-picker-color: white;
+  --quill-picker-options-color: black;
+  --canvas-bg-color: rgb(250, 249, 249);
+  --clear-btn-bg-color: #f44336;
+  --clear-btn-hover-bg-color: #d32f2f;
+  --clear-btn-color: white;
+  --dropdown-bg-color: #292929;
+  --dropdown-content-bg-color: #484646;
+  --dropdown-content-item-bg-color: rgb(247, 246, 246);
+  --dropdown-content-item-hover-bg-color: #f1f1f1;
+}
+
+ body {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: rgb(206, 204, 204);
+  background-color: var(--main-bg-color);
 }
 
 .container {
@@ -13,23 +45,23 @@ body {
   height: 95vh;
   display: flex;
   border-radius: 20px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--shadow-color) 0px 7px 29px 0px;
 }
 
 .icon-div {
   height: 95vh;
-  width: 5vw;
+  width: 70px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  border-right: 1px solid darkgray;
-  background-color: rgb(253, 254, 254);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--icon-div-bg-color);
+  box-shadow: var(--shadow-color) 0px 7px 29px 0px;
 }
 
 .notes-div {
   height: 95vh;
   width: 25vw;
-  background-color: rgb(252, 252, 251);
+  background-color: var(--container-bg-color);
   overflow-y: scroll;
 }
 
@@ -38,19 +70,19 @@ body {
   border-bottom-right-radius: 20px;
   width: 60vw;
   height: 95vh;
-  background-color: rgb(87, 20, 151);
-  color: white;
+  background-color: var(--noteContainer-div-bg-color);
+  color: var(--text-color);
   text-align: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--shadow-color) 0px 7px 29px 0px;
 }
 
 .add-btn,
 .task-btn,
 .subscribe-btn,
 .share-btn {
-  color: white;
-  height: 40px;
-  width: 40px;
+  color: var(--text-color);
+  height: 8%;
+  width: 70%;
   border-radius: 50%;
   border: none;
   margin-top: 30px;
@@ -66,19 +98,19 @@ body {
 }
 
 .add-btn {
-  background-color: black;
+  background-color: var(--addbutton-color);
 }
 
 .task-btn {
-  background-color: rgb(232, 196, 37);
+  background-color: var(--taskbutton-color);
 }
 
 .subscribe-btn {
-  background-color: rgb(116, 63, 72);
+  background-color: var(--scribblebutton-color);
 }
 
 .share-btn {
-  background-color: rgb(10, 56, 10);
+  background-color: var(--sharebutton-color);
 }
 
 .note {
@@ -91,7 +123,7 @@ body {
 }
 
 .note:hover {
-  background-color: rgb(179, 248, 225);
+  background-color: var(--note-hover-bg-color);
 }
 
 .notes-div::-webkit-scrollbar {
@@ -99,7 +131,7 @@ body {
 }
 
 .cont-date {
-  color: rgb(176, 174, 174);
+  color: var(--cont-date-color);
   font-size: 18px;
   margin-bottom: 2px;
   margin-left: 10px;
@@ -107,12 +139,12 @@ body {
 }
 
 .cont-title {
-  color: rgb(238, 103, 103);
+  color: var(--cont-title-color);
   font-size: 26px;
 }
 
 .cont-content {
-  color: antiquewhite;
+  color: var(--cont-content-color);
 }
 
 .date-heading {
@@ -140,17 +172,17 @@ body {
 }
 
 .ql-toolbar.ql-snow {
-  background-color: rgb(76, 15, 137);
+  background-color: var(--quill-bg-color);
   margin: 0 35px 0 30px;
   border: none !important;
 }
 
 .ql-snow.ql-toolbar button {
-  color: antiquewhite !important;
+  color: var(--quill-button-color) !important;
 }
 
 .ql-snow.ql-toolbar button svg {
-  color: white !important;
+  color: var(--quill-svg-color) !important;
   border-radius: 5px;
 }
 
@@ -162,14 +194,14 @@ body {
   height: 65% !important;
 }
 .ql-snow .ql-stroke {    
-  stroke: rgb(245, 242, 242) !important;
+  stroke: var(--quill-stroke-color) !important;
      
 }
 .ql-snow .ql-picker {
-  color: white !important;
+  color: var(--quill-picker-color) !important;
 }
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options{
-  color: black !important;
+  color: var(--quill-picker-options-color) !important;
 }
 canvas {
   border: 1px solid #000;
@@ -192,17 +224,17 @@ canvas {
   margin-left: 5vw;
   width: 50vw !important;
   height: 70vh !important;
-  background-color: rgb(250, 249, 249) !important;
+  background-color: var(--canvas-bg-color) !important;
   border: none !important;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .clear-btn {
-  background-color: #f44336;
+  background-color: var(--clear-btn-bg-color);
   position: absolute;
   right: 140px;
   top: 80px;
   border: none;
-  color: white;
+  color: var(--clear-btn-color);
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -211,7 +243,7 @@ canvas {
 }
 
 .clear-btn:hover {
-  background-color: #d32f2f;
+  background-color: var(--clear-btn-hover-bg-color);
 }
 
 .dropdown {
@@ -221,7 +253,7 @@ canvas {
   top: 2px;
 }
 .dropbtn{
-  background-color: #292929;
+  background-color: var(--dropdown-bg-color);
   color: white;
   border: none;
 }
@@ -229,7 +261,7 @@ canvas {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #484646;
+  background-color: var(--dropdown-content-bg-color);
   width: 35px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -241,14 +273,10 @@ canvas {
   padding: 10px;
   text-decoration: none;
   display: block;
-  background: rgb(247, 246, 246);
+  background: var(--dropdown-content-item-bg-color);
   border: none;
   width: 100%;
   text-align: left;
-}
-
-.dropdown-content button:hover {
-  background-color: #f1f1f1;
 }
 
 .show {
