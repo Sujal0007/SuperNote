@@ -81,8 +81,8 @@
 .subscribe-btn,
 .share-btn {
   color: var(--text-color);
-  height: 8%;
-  width: 70%;
+  height: 45px;
+  width: 45px;
   border-radius: 50%;
   border: none;
   margin-top: 30px;
