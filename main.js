@@ -61,7 +61,7 @@ function renderNotes(notesData) {
         var noteDiv = document.createElement('div');
         noteDiv.classList.add('note');
         if (data === currentNote) {
-            noteDiv.style.backgroundColor = 'aquamarine';
+            noteDiv.style.backgroundColor = '#B6B4B4';
         } 
 
         var dropdown = document.createElement('div');
@@ -121,7 +121,7 @@ function renderNotes(notesData) {
             document.querySelectorAll('.note').forEach(function (note) {
                 note.style.backgroundColor = '';
             });
-            noteDiv.style.backgroundColor = 'aquamarine';
+            noteDiv.style.backgroundColor = '#B6B4B4';
             renderDataInContainer(data);
         })
         notesDiv.appendChild(noteDiv);
@@ -295,7 +295,10 @@ taskBtn.addEventListener('click', taskButton);
 scribbleBtn.addEventListener('click', scribbleButton)
 
 
-notesData.sort((a, b) => new Date(b.date) - new Date(a.date));
+function sortByDate(){
+    notesData.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+sortByDate();
 renderNotes(notesData);
 currentNote = notesData[0];
 renderNotes(notesData); 
